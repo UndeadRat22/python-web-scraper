@@ -1,17 +1,5 @@
 import requests
 
-def scrape(base_url, dict_dir, correct_status_code = 200):
-    if not get_status(base_url, "", correct_status_code):
-        return None
-
-    if base_url[-1] != "/":
-        base_url = base_url + "/"
-
-    with open(dict_dir, "r") as _dict:
-        urls = try_url(base_url, _dict, correct_status_code)
-    
-    return urls
-
 def try_url(base_url, _dict, correct_status_code):
     urls = []
     while True:
@@ -32,7 +20,7 @@ def get_status(url, word, correct_status_code):
         return url
     return None
 
-def scrape_recursive(base_url, dict_dir, correct_status_code = 200, max_depth = 5):
+def scrape(base_url, dict_dir, correct_status_code = 200, max_depth = 1):
     if not get_status(base_url, "", correct_status_code):
         return None
 
